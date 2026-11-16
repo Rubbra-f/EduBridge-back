@@ -23,7 +23,7 @@ Start the backend, then run `npm run dev`. Vite adds the API key to proxied requ
 
 ## Production
 
-The frontend repository is a Vite SPA and does not include a production application server. Configure the HTTPS reverse proxy in front of the static frontend using `deploy/nginx-edubridge-proxy.conf`. Define `EDUBRIDGE_API_KEY` as a protected Nginx variable using your deployment's secret-management mechanism. Do not put it in frontend environment variables or static files.
+The frontend repository is a Vite SPA and does not include a production application server. Configure the HTTPS reverse proxy in front of the static frontend using `deploy/nginx-edubridge-proxy.conf`. Create `/etc/nginx/secrets/edubridge-api-key.conf` with a `set $edubridge_api_key "...";` directive, readable only by the deployment administrator. The sample Nginx config includes this file. Do not put the secret in frontend environment variables or static files.
 
 The backend should remain bound to localhost or a private network. The image endpoint also requires the backend's configured image directory to contain the licensed image files named `{QuestionId}.jpg`.
 
@@ -33,6 +33,6 @@ The backend should remain bound to localhost or a private network. The image end
 - Each selected concept starts one assessment and displays its question images.
 - A/B/C/D are submitted as `AnswerValue` 1/2/3/4.
 - Pre-test, post-test, and remedial modes remain available in the assessment UI.
-- The API currently returns a diagnosis but does not include per-question correctness counts in its response. The frontend will show those counts when the backend exposes them; it does not guess or calculate correctness in the browser.
+- The frontend expects the backend score-summary extension from the companion `feature/assessment-score-summary` backend change (`correct_count`, `incorrect_count`, `incorrect_question_ids`, and `score`). Merge/deploy that backend change for the final score and remedial wrong-question list to appear. The browser never receives the answer key.
 - The current student identifier is a random browser-local pseudonymous ID. Real student accounts and server-side persistence still require the application's authentication/database integration.
 - Teacher dashboard is a UI skeleton only; it does not yet have class/student records or authorization.
