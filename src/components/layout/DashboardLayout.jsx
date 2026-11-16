@@ -10,6 +10,7 @@ const DashboardLayout = ({ children }) => {
     { path: '/kuis', label: 'Kuis', icon: 'quiz' },
     { path: '/progres', label: 'Progres', icon: 'progress' },
     { path: '/profil', label: 'Profil', icon: 'profile' },
+    { path: '/teacher', label: 'Dashboard Guru', icon: 'teacher' },
   ];
 
   return (
@@ -53,6 +54,7 @@ const DashboardLayout = ({ children }) => {
                   {item.icon === 'quiz' && <><path d="M15 27c0-6-7-8-7-15a16 16 0 0 1 32 0c0 7-7 9-7 15H15Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" /><path d="M17 33h14m-12 5h10M24 1v4M3 13h4m34 0h4M8 3l3 4m29-4-3 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></>}
                   {item.icon === 'progress' && <path d="m4 35 12-14 8 7L42 8m-11 0h11v11" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />}
                   {item.icon === 'profile' && <><circle cx="24" cy="15" r="9" stroke="currentColor" strokeWidth="2.8" /><path d="M5 43c0-10 7.5-16 19-16s19 6 19 16H5Z" stroke="currentColor" strokeWidth="2.8" strokeLinejoin="round" /></>}
+                  {item.icon === 'teacher' && <><path d="M5 18 24 7l19 11-19 11L5 18Z" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/><path d="M12 23v10c7 5 17 5 24 0V23M43 19v13" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/></>}
                 </svg>
               </div>
               <span className={`font-poppins text-[15px] ${location.pathname === item.path ? 'font-extrabold text-[#3A81DA]' : 'font-semibold text-[#3A81DA]'}`}>
